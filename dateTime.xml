@@ -13,7 +13,7 @@
 			<item>Quel jour sommes-nous<tag>out.action.command="DATE"</tag></item>
 			<item>On est quel jour<tag>out.action.command="DATE"</tag></item>
 			<item>Quelle date sommes-nous<tag>out.action.command="DATE"</tag></item>
-			<item>On est quel date<tag>out.action.command="DATE"</tag></item>
+			<item>On est quelle date<tag>out.action.command="DATE"</tag></item>
 
 			<item>Quelle heure est il<tag>out.action.command="HOUR"</tag></item>
 			<item>Il est quelle heure<tag>out.action.command="HOUR"</tag></item>

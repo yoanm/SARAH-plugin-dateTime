@@ -1,12 +1,12 @@
 exports.init = function(SARAH)
 {
-	var dateTimePlugin = new DateTimePlugin();
+	this.dateTimePlugin = new DateTimePlugin();
 	info('[DateTime] initialization ...');
-	info('[DateTime] : ', dateTimePlugin.getDateTimeMessage());
+	info('[DateTime] : ', this.dateTimePlugin.getDateTimeMessage());
 	info('[DateTime] initialized !');
 }
 exports.dispose = function(){
-	delete dateTimePlugin;
+	this.dateTimePlugin = null;
 	info('[DateTime] uninitialized !');
 }
 exports.action = function(data, callback, config, SARAH)
@@ -16,13 +16,13 @@ exports.action = function(data, callback, config, SARAH)
 	var message = 'Hum j\'ai raté quelque chose !';
 	switch (command) {
 		case 'DATE':
-			message = dateTimePlugin.getDateMessage();
+			message = this.dateTimePlugin.getDateMessage();
 			break;
 		case 'HOUR':
-			message = dateTimePlugin.getTimeMessage();
+			message = this.dateTimePlugin.getTimeMessage();
 			break;
 		case 'FULL':
-			message = dateTimePlugin.getDateTimeMessage();
+			message = this.dateTimePlugin.getDateTimeMessage();
 			break;
 	}
     info('[DateTime] : ', message);
@@ -41,14 +41,14 @@ DateTimePlugin.prototype.getTimeMessage = function () {
 };
 DateTimePlugin.prototype.getDateMessage = function () {
 	var message = 'Nous sommes le ';
-	message += v_moment().format("dddd, DD MMMM YYYY");
+	message += this.moment().format("dddd, DD MMMM YYYY");
 	message += '. ';
 	return message;
 };
 
 DateTimePlugin.prototype.getDateTimeMessage = function () {
 	var message = 'Nous sommes le ';
-	message += v_moment().format("dddd, DD MMMM YYYY");
+	message += this.moment().format("dddd, DD MMMM YYYY");
 	message += ' à ';
 	message += this.moment().format("HH [heure] mm");
 	message += '. ';

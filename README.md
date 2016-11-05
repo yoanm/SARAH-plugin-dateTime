@@ -70,5 +70,10 @@ Say one the following sentences (replace `Alfred` with the one used) to have dat
 Alfred, quel jour sommes-nous ?
 Alfred, on est quel jour ?
 Alfred, quelle date sommes-nous ?
-Alfred, on est quel date ?
+Alfred, on est quelle date ?
 ```
+
+## Todo
+ - Use word instead of numbers for instance for 12h00
+ - Internationalization
+ - Event emitter ?
