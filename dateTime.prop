@@ -1,0 +1,10 @@
+{
+    "modules" :
+    {
+        "dateTime" :
+        {
+            "description" : "Manage date and time",
+            "versionPlugin" : "1.0"
+        }
+    }
+}
