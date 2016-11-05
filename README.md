@@ -47,13 +47,13 @@ Clone or download the plugin from github into SARAH plugin directory :
 > git clone https://github.com/yoanm/SARAH-plugin-dateTime.git dateTime
 Cloning into 'dateTime'...
 Checking connectivity... done.
-#Go to time plugin directory
+#Go to dateTime plugin directory
 > cd dateTime
 ```
 
 ### Install
- 1 - (Optional) Replace all `Alfred` occurences in [`dateTime.xml`](./dateTime.xml) file with the name that you use (Sarah, jarvis, yuri, ...)
- 2 - Simply reload SARAH server, plugin will be automatically loaded.
+ 1. (Optional) Replace all `Alfred` occurences in [`dateTime.xml`](./dateTime.xml) file with the name that you use (Sarah, jarvis, yuri, ...)
+ 2. Simply reload SARAH server, plugin will be automatically loaded.
 
 ### How to use
 
