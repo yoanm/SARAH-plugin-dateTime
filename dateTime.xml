@@ -10,13 +10,13 @@
 		<tag>out.action=new Object(); </tag>
 		<item weight="2">Alfred</item>
 		<one-of>
-			<item>Quel jour sommes-nous<tag>out.action.command="DATE"</tag></item>
-			<item>On est quel jour<tag>out.action.command="DATE"</tag></item>
-			<item>Quelle date sommes-nous<tag>out.action.command="DATE"</tag></item>
-			<item>On est quelle date<tag>out.action.command="DATE"</tag></item>
+			<item>Quel jour sommes-nous<tag>out.action.action="DATE"</tag></item>
+			<item>On est quel jour<tag>out.action.action="DATE"</tag></item>
+			<item>Quelle date sommes-nous<tag>out.action.action="DATE"</tag></item>
+			<item>On est quelle date<tag>out.action.action="DATE"</tag></item>
 
-			<item>Quelle heure est il<tag>out.action.command="HOUR"</tag></item>
-			<item>Il est quelle heure<tag>out.action.command="HOUR"</tag></item>
+			<item>Quelle heure est il<tag>out.action.action="HOUR"</tag></item>
+			<item>Il est quelle heure<tag>out.action.action="HOUR"</tag></item>
 		</one-of>
 		<tag>out.action._attributes.uri="http://127.0.0.1:8080/sarah/dateTime";</tag>
 	</rule>
