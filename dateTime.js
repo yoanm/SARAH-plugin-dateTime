@@ -5,18 +5,18 @@
  */
 exports.init = function(SARAH)
 {
-	this.dateTimePlugin = new DateTimePlugin();
-	info('[DateTime] initialization ...');
-	info('[DateTime] : ', this.dateTimePlugin.getDateTimeMessage());
-	info('[DateTime] initialized !');
-}
+    this.dateTimePlugin = new DateTimePlugin();
+    info('[DateTime] initialization ...');
+    info('[DateTime] : ', this.dateTimePlugin.getDateTimeMessage());
+    info('[DateTime] initialized !');
+};
 /**
  * SARAH server plugin dispose function. Called on server shutdown
  */
 exports.dispose = function(){
-	this.dateTimePlugin = null;
-	info('[DateTime] uninitialized !');
-}
+    this.dateTimePlugin = null;
+    info('[DateTime] uninitialized !');
+};
 /**
  * SARAH server plugin action function. Called when SARAH client reach the server at plugin endpoint
  * {inhertedDoc}
@@ -37,9 +37,9 @@ const DATETIMEPLUGIN_ACTION_HOUR = 'HOUR';
 const DATETIMEPLUGIN_ACTION_FULL = 'FULL';
 
 function DateTimePlugin() {
-	this.moment = require('moment');
-	this.moment.locale('fr');
-	this.loadSarahVersion();
+    this.moment = require('moment');
+    this.moment.locale('fr');
+    this.loadSarahVersion();
 }
 
 /**
@@ -48,7 +48,7 @@ function DateTimePlugin() {
  * @param {object}   data
  * @param {callable} callback
  * @param {object}   config
- * @param {SARAH}  SARAH
+ * @param {SARAH}    SARAH
  */
 DateTimePlugin.prototype.action = function (data, callback, config, SARAH) {
     var message = 'Hum j\'ai raté quelque chose !';
@@ -73,10 +73,10 @@ DateTimePlugin.prototype.action = function (data, callback, config, SARAH) {
  * @returns {string} Current time sentence
  */
 DateTimePlugin.prototype.getTimeMessage = function () {
-	var message = ' Il est ';
-	message += this.getShortTimeMessage();
-	message += '. ';
-	return message;
+    var message = ' Il est ';
+    message += this.getShortTimeMessage();
+    message += '. ';
+    return message;
 };
 
 /**
@@ -86,10 +86,10 @@ DateTimePlugin.prototype.getTimeMessage = function () {
  * @returns {string} Current date sentence
  */
 DateTimePlugin.prototype.getDateMessage = function () {
-	var message = 'Nous sommes le ';
-	message += this.moment().format("dddd, DD MMMM YYYY");
-	message += '. ';
-	return message;
+    var message = 'Nous sommes le ';
+    message += this.moment().format("dddd, DD MMMM YYYY");
+    message += '. ';
+    return message;
 };
 
 /**
@@ -99,12 +99,12 @@ DateTimePlugin.prototype.getDateMessage = function () {
  * @returns {string} Current date and time sentence
  */
 DateTimePlugin.prototype.getDateTimeMessage = function () {
-	var message = 'Nous sommes le ';
-	message += this.moment().format("dddd, DD MMMM YYYY");
-	message += ' à ';
-	message += this.getShortTimeMessage();
-	message += '. ';
-	return message;
+    var message = 'Nous sommes le ';
+    message += this.moment().format("dddd, DD MMMM YYYY");
+    message += ' à ';
+    message += this.getShortTimeMessage();
+    message += '. ';
+    return message;
 };
 
 /**
@@ -114,10 +114,10 @@ DateTimePlugin.prototype.getDateTimeMessage = function () {
  * @returns {string} Time sentence
  */
 DateTimePlugin.prototype.getShortTimeMessage = function () {
-	return this.naturalLanguage(
+    return this.naturalLanguage(
         parseInt(this.moment().format('HH')),
-		parseInt(this.moment().format('mm'))
-	);
+        parseInt(this.moment().format('mm'))
+    );
 };
 
 /**
@@ -149,26 +149,26 @@ DateTimePlugin.prototype.speak = function(tts, callback, SARAH) {
  * @returns {string} The time on natural language
  */
 DateTimePlugin.prototype.naturalLanguage = function(hour, minute) {
-	var hourMessage = hour;
-	var minuteMessage = minute;
-	var separator = ' heure ';
-	switch (hour) {
-		case 12:
-			hourMessage = 'midi';
-			separator = ' ';
-			break;
-		case 24:
-			hourMessage = 'minuit';
-			separator = ' ';
-			break;
-	}
+    var hourMessage = hour;
+    var minuteMessage = minute;
+    var separator = ' heure ';
+    switch (hour) {
+        case 12:
+            hourMessage = 'midi';
+            separator = ' ';
+            break;
+        case 24:
+            hourMessage = 'minuit';
+            separator = ' ';
+            break;
+    }
 
-	if (minute > 12) {
-		minute -= 12;
-		minuteMessage = minute;
-	}
+    if (minute > 12) {
+        minute -= 12;
+        minuteMessage = minute;
+    }
 
-	return hourMessage + separator + minuteMessage;
+    return hourMessage + separator + minuteMessage;
 };
 /**
  * @private
