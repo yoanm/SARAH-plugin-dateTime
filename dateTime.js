@@ -24,7 +24,7 @@ exports.init = function(SARAH)
         // For SARAH v4
         yearOnDate = true == Config.modules.dateTime.yearOnDate;
     }
-    this.dateTimeModule = require('./dateTimeModule')(yearOnDate);
+    this.dateTimeModule = require('dateTimeModule')(yearOnDate);
     this.logger.info(this.dateTimeModule.getDateTimeMessage());
     this.logger.info('initialized !');
 };
@@ -43,7 +43,8 @@ exports.dispose = function(){
 exports.action = function (data, callback, config, SARAH) {
     const SarahActionContext = require('sarahActionContext');
     var context = new SarahActionContext(data, callback);
-    var helper = require('./sarahActionHelperFactory')(context);
+    const SarahActionHelper = require('sarahActionHelper');
+    var helper = new SarahActionHelper(context);
     if (this.version.isV3()) {
         // For SARAH v3
         context.setSARAH(SARAH);
