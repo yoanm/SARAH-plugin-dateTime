@@ -3,19 +3,19 @@
  * @description Provide useful methods to deal with Sarah version
  *
  * @example
- * var sarahVersion = require('sarahVersion');
+ * var version = require('version');
  *
  * @example <caption>Helper</caption>
- *  sarahVersion.isV3();
- *  sarahVersion.isV4();
- *  sarahVersion.getVersion();
+ *  version.isV3();
+ *  version.isV4();
+ *  version.get();
  *
- * @example <caption>getVersion usage</caption>
- *  var sarahVersionNumber = sarahVersion.getVersion();
- *  if (sarahVersion.v3 == sarahVersionNumber) {
+ * @example <caption>get usage</caption>
+ *  var versionNumber = version.get();
+ *  if (version.v3 == versionNumber) {
  *      ...
  *  }
- *  if (sarahVersion.v4 == sarahVersionNumber) {
+ *  if (version.v4 == sarahVersionNumber) {
  *      ...
  *  }
  *
@@ -64,7 +64,7 @@ module.exports = (function() {
      *
      * @returns {SarahVersionNumber}
      */
-    SarahVersion.getVersion = function ()
+    SarahVersion.get = function ()
     {
         return this.isV3() ? this.v3 : this.v4;
     };

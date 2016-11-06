@@ -1,6 +1,6 @@
 /******************************************************************
  * @summary SARAH action helper
- * @description SarahActionHelper provide useful method regarding action
+ * @description SarahActionHelper provide useful methods regarding action
  * for module which want to run in SARAH v3 AND v4
  *
  * @requires parameterBag
@@ -18,6 +18,7 @@
  *******************************************************************/
 
 const ParameterBag = require('parameterBag');
+const version = require('sarahVersion');
 
 /**
  * @constructor
@@ -26,7 +27,6 @@ const ParameterBag = require('parameterBag');
  */
 function SarahActionHelper(actionContext) {
     this.config = new ParameterBag();
-    this.version = require('sarahVersion');
     this.actionContext = actionContext;
 }
 
@@ -37,7 +37,7 @@ function SarahActionHelper(actionContext) {
  */
 SarahActionHelper.prototype.speak = function(tts) {
     var callback = this.actionContext.getCallback();
-    if (!this.version.isV3()) {
+    if (!version.isV3()) {
         callback({'tts': tts});
     } else {
         this.actionContext
@@ -66,11 +66,6 @@ SarahActionHelper.prototype.config = null;
  * @type {SarahActionContext}
  */
 SarahActionHelper.prototype.actionContext = null;
-/**
- * @private
- * @type {SarahVersion}
- */
-SarahActionHelper.prototype.version = null;
 
 /* Export class */
 module.exports = SarahActionHelper;

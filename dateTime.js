@@ -11,6 +11,7 @@
 const SarahLogger = require('sarahLogger');
 const SarahActionContext = require('sarahActionContext');
 const SarahActionHelper = require('sarahActionHelper');
+const version = require('sarahVersion');
 /**
  * SARAH server plugin init function. Could be called at server startup or if plugin is reloaded
  *
@@ -18,12 +19,10 @@ const SarahActionHelper = require('sarahActionHelper');
  */
 exports.init = function(SARAH)
 {
-    this.version = require('sarahVersion');
     this.logger = new SarahLogger('DateTime');
     this.logger.info('initialization ...');
     var yearOnDate = true;
-    if (this.version.isV4()) {
-        // For SARAH v4
+    if (version.isV4()) {
         yearOnDate = true == Config.modules.dateTime.yearOnDate;
     }
     this.dateTimeModule = require('dateTimeModule')(yearOnDate);
@@ -45,8 +44,7 @@ exports.dispose = function(){
 exports.action = function (data, callback, config, SARAH) {
     var context = new SarahActionContext(data, callback);
     var helper = new SarahActionHelper(context);
-    if (this.version.isV3()) {
-        // For SARAH v3
+    if (version.isV3()) {
         context.setSARAH(SARAH);
         this.dateTimeModule.setYearOnDate(
             true == config.modules.dateTime.yearOnDate
