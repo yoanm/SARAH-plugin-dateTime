@@ -1,26 +1,19 @@
 /******************************************************************
- * @summary Factory to create a SARAH logger
- * @description SARAH logger will automatically add the channel 
+ * @summary SARAH logger
+ * @description SarahLogger will automatically add the channel
  *  in front of the message string
  *
- * @example <caption>Multiple loggger instantiation</caption>
- * var sarahLoggerFactory = require('sarahLoggerFactory');
- * var sarahLogger1 = sarahLoggerFactory('channel1');
- * var sarahLogger2 = sarahLoggerFactory('channel2');
- *
- * @example <caption>Single loggger instantiation</caption>
- * var sarahLogger = require('sarahLoggerFactory')('channel');
+ * @example <caption>Instantiation</caption>
+ * const SarahLogger = require('sarahLogger');
+ * var logger = new SarahLogger('channel');
  *
  * @example <caption>Helper</caption>
- *  sarahLogger.debug(message);
- *  sarahLogger.log(message);
- *  sarahLogger.info(message);
- *  sarahLogger.warn(message);
- *  sarahLogger.error(message);
+ *  logger.debug(message);
+ *  logger.log(message);
+ *  logger.info(message);
+ *  logger.warn(message);
+ *  logger.error(message);
  *******************************************************************/
-module.exports = function (channel) {
-    return new SarahLogger(channel);
-};
 
 /**
  * @constructor
@@ -65,6 +58,7 @@ SarahLogger.prototype.warn = function (msg) {
 SarahLogger.prototype.error = function (msg) {
     error.apply(this, [this.prependChannel(msg)]);
 };
+
 /**
  * @private
  *
@@ -73,9 +67,11 @@ SarahLogger.prototype.error = function (msg) {
 SarahLogger.prototype.prependChannel = function(msg) {
     return '[' + this.channel + '] ' + msg;
 };
-
 /**
  * @private
  * @type {string}
  */
 SarahLogger.prototype.channel = null;
+
+/* Export class */
+module.exports = SarahLogger;
