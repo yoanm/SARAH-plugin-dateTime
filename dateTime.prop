@@ -4,7 +4,8 @@
         "dateTime" :
         {
             "description" : "Manage date and time",
-            "versionPlugin" : "1.0"
+            "version" : "1.0",
+            "yearOnDate": true
         }
     }
 }
