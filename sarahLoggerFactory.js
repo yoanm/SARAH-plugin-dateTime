@@ -1,9 +1,28 @@
+/******************************************************************
+ * @summary Factory to create a SARAH logger
+ * @description SARAH logger will automatically add the channel 
+ *  in front of the message string
+ *
+ * @example <caption>Multiple loggger instantiation</caption>
+ * var sarahLoggerFactory = require('sarahLoggerFactory');
+ * var sarahLogger1 = sarahLoggerFactory('channel1');
+ * var sarahLogger2 = sarahLoggerFactory('channel2');
+ *
+ * @example <caption>Single loggger instantiation</caption>
+ * var sarahLogger = require('sarahLoggerFactory')('channel');
+ *
+ * @example <caption>Helper</caption>
+ *  sarahLogger.debug(message);
+ *  sarahLogger.log(message);
+ *  sarahLogger.info(message);
+ *  sarahLogger.warn(message);
+ *  sarahLogger.error(message);
+ *******************************************************************/
 module.exports = function (channel) {
     return new SarahLogger(channel);
 };
 
 /**
- * Simple wrapper to have a channel in log entries
  * @constructor
  *
  * @param {string} channel

@@ -1,9 +1,28 @@
+/******************************************************************
+ * @summary Factory to create a SARAH action helper
+ * @description SarahActionHelper provide useless method regarding action
+ * for module which want to run in SARAH v3 AND v4
+ *
+ * @requires ParameterBag
+ * @requires SarahVersion
+ *
+ * @example <caption>Multiple context instantiation</caption>
+ * var sarahHelperFactory = require('sarahHelperFactory');
+ * var sarahHelper1 = sarahHelperFactory(actionContext);
+ * var sarahHelper2 = sarahHelperFactory(actionContext);
+ *
+ * @example <caption>Single context instantiation</caption>
+ * var sarahHelper = require('sarahHelperFactory')(actionContext);
+ *
+ * @example <caption>Helper</caption>
+ *  sarahHelper.speak(tts);
+ *
+ * @example <caption>Getter</caption
+ *  sarahHelper.getContext();
+ *******************************************************************/
 module.exports = function (actionContext) {
     return new SarahActionHelper(actionContext);
 };
-
-var SARAH_VERSION_3 = 3;
-var SARAH_VERSION_4 = 4;
 
 /**
  * @constructor
