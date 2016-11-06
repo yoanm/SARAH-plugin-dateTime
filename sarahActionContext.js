@@ -1,17 +1,13 @@
 /*****************************************************************************************************************
- * @summary Factory to create a SARAH action context
- * @description SarahActionContext provide useless method regarding action context
+ * @summary SARAH action context
+ * @description SarahActionContext provide useful methods regarding action context
  * for module which want to run in SARAH v3 AND v4
  *
- * @requires parameterBagFactory
+ * @requires parameterBag
  *
- * @example <caption>Multiple context instantiation</caption>
- * var sarahContextFactory = require('sarahContextFactory');
- * var sarahContext1 = sarahContextFactory(data1, callback1);
- * var sarahContext2 = sarahContextFactory(data2, callback2);
- *
- * @example <caption>Single context instantiation</caption>
- * var sarahContext = require('sarahContextFactory')(data, callback);
+ * @example <caption>Instantiation</caption>
+ * const SarahContext = require('sarahContext');
+ * var context = new SarahContext(data, callback);
  *
  * @example <caption>Setter</caption>
  *  sarahContext.setSARAH(SARAHInstance);
@@ -21,9 +17,6 @@
  *  sarahContext.getCallback();
  *  sarahContext.getSARAH();
  *****************************************************************************************************************/
-module.exports = function (data, callback) {
-    return new SarahActionContext(data, callback);
-};
 
 /**
  * @constructor
@@ -32,7 +25,8 @@ module.exports = function (data, callback) {
  * @param {callable} callback Action Callback
  */
 function SarahActionContext(data, callback) {
-    this.context = require('./parameterBagFactory')();
+    const ParameterBag = require('parameterBag');
+    this.context = new ParameterBag();
     this.context.set('data', data);
     this.context.set('callback', callback);
 }
@@ -77,3 +71,6 @@ SarahActionContext.prototype.getSARAH = function () {
  * @type {ParameterBag}
  */
 SarahActionContext.prototype.context = null;
+
+/* Export class */
+module.exports = SarahActionContext;
