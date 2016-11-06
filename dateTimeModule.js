@@ -2,7 +2,7 @@
  * @summary dateTime module
  *
  * @requires sarahLoggerFactory
- * @requires parameterBagFactory
+ * @requires parameterBag
  * @requires moment
  */
 module.exports = function(yearOnDate) {
@@ -22,7 +22,8 @@ function DateTimeModule(yearOnDate) {
     this.moment = require('moment');
     this.moment.locale('fr');
     this.logger = require('./sarahLoggerFactory')('DateTimeModule');
-    this.config = require('./parameterBagFactory')();
+    const ParameterBag = require('parameterBag');
+    this.config = new ParameterBag();
     this.setYearOnDate(yearOnDate);
 }
 

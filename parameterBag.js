@@ -1,24 +1,17 @@
 /*****************************************************************************************************************
- * @summary Factory to create simple parameter bag module, inspired by Symfony ParameterBag
- * @description ParameterBag prrovide Object oriented way to store key value pair
+ * @summary Simple parameter bag module, inspired by Symfony ParameterBag
+ * @description ParameterBag provide Object oriented way to store key value pair
  *
- * @example <caption>Multiple parameter bag instantiation</caption>
- * var parameterBagFactory = require('parameterBagFactory');
- * var parameterBag1 = parameterBagFactory();
- * var parameterBag2 = parameterBagFactory();
- *
- * @example <caption>Single parameter bag instantiation</caption>
- * var parameterBag = require('parameterBagFactory')();
+ * @example <caption>Instantiation</caption>
+ * const ParameterBag = require('parameterBag');
+ * var bag = new ParameterBag();
  *
  * @example <caption>Setter</caption>
- *  parameterBag.set('key', value);
+ *  bag.set('key', value);
  *
  * @example <caption>Getter</caption
- *  var myValue = sarahContext.get('key');
+ *  var myValue = bag.get('key');
  *****************************************************************************************************************/
-module.exports = function () {
-    return new ParameterBag();
-};
 
 /**
  * @constructor
@@ -50,3 +43,6 @@ ParameterBag.prototype.get = function (key) {
  * @type {Array}
  */
 ParameterBag.prototype.store = null;
+
+/* Export class */
+module.exports = ParameterBag;
