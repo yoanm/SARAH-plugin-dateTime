@@ -1,6 +1,6 @@
 /******************************************************************
  * @summary Sarah version helper
- * @description Provide usefull method to guess Sarah version
+ * @description Provide useful methods to deal with Sarah version
  *
  * @example
  * var sarahVersion = require('sarahVersion');
@@ -8,19 +8,36 @@
  * @example <caption>Helper</caption>
  *  sarahVersion.isV3();
  *  sarahVersion.isV4();
+ *  sarahVersion.getVersion();
  *
- * @example <caption>Usage</caption
+ * @example <caption>getVersion usage</caption>
  *  var sarahVersionNumber = sarahVersion.getVersion();
- *  if (SARAH_VERSION_V3 == sarahVersionNumber) {
+ *  if (sarahVersion.v3 == sarahVersionNumber) {
  *      ...
  *  }
- *  if (SARAH_VERSION_V4 == sarahVersionNumber) {
+ *  if (sarahVersion.v4 == sarahVersionNumber) {
  *      ...
  *  }
  *
  *******************************************************************/
 module.exports = (function() {
     var SarahVersion = {};
+
+    /**
+     * @typedef {int} SarahVersionNumber
+     */
+    /**
+     * @public
+     * @readOnly
+     * @type {SarahVersionNumber}
+     */
+    SarahVersion.v3 = 3;
+    /**
+     * @public
+     * @readOnly
+     * @type {SarahVersionNumber}
+     */
+    SarahVersion.v4 = 4;
 
     /**
      * @public
@@ -49,21 +66,8 @@ module.exports = (function() {
      */
     SarahVersion.getVersion = function ()
     {
-        return this.isV3() ? SARAH_VERSION_V3 : SARAH_VERSION_V4;
+        return this.isV3() ? this.v3 : this.v4;
     };
 
     return SarahVersion;
 }());
-/**
- * @typedef {int} SarahVersionNumber
- */
-/**
- * @public
- * @type {SarahVersionNumber}
- */
-const SARAH_VERSION_V3 = 3;
-/**
- * @public
- * @type {SarahVersionNumber}
- */
-const SARAH_VERSION_V4 = 4;
