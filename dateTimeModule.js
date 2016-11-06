@@ -8,7 +8,10 @@
 module.exports = function(yearOnDate) {
     return new DateTimeModule(yearOnDate);
 };
+
 const SarahLogger = require('sarahLogger');
+const ParameterBag = require('parameterBag');
+
 /**
  * @constructor
  *
@@ -18,7 +21,6 @@ function DateTimeModule(yearOnDate) {
     this.moment = require('moment');
     this.moment.locale('fr');
     this.logger = new SarahLogger('DateTimeModule');
-    const ParameterBag = require('parameterBag');
     this.config = new ParameterBag();
     this.setYearOnDate(yearOnDate);
 }

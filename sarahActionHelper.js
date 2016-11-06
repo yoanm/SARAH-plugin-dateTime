@@ -17,13 +17,14 @@
  *  helper.getContext();
  *******************************************************************/
 
+const ParameterBag = require('parameterBag');
+
 /**
  * @constructor
  *
  * @param {SarahActionContext} actionContext
  */
 function SarahActionHelper(actionContext) {
-    const ParameterBag = require('parameterBag');
     this.config = new ParameterBag();
     this.version = require('sarahVersion');
     this.actionContext = actionContext;

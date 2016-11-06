@@ -6,17 +6,19 @@
  * @requires parameterBag
  *
  * @example <caption>Instantiation</caption>
- * const SarahContext = require('sarahContext');
- * var context = new SarahContext(data, callback);
+ * const SarahActionContext = require('sarahContext');
+ * var context = new SarahActionContext(data, callback);
  *
  * @example <caption>Setter</caption>
- *  sarahContext.setSARAH(SARAHInstance);
+ *  context.setSARAH(SARAHInstance);
  *
  * @example <caption>Getter</caption
- *  sarahContext.getData();
- *  sarahContext.getCallback();
- *  sarahContext.getSARAH();
+ *  context.getData();
+ *  context.getCallback();
+ *  context.getSARAH();
  *****************************************************************************************************************/
+
+const ParameterBag = require('parameterBag');
 
 /**
  * @constructor
@@ -25,7 +27,6 @@
  * @param {callable} callback Action Callback
  */
 function SarahActionContext(data, callback) {
-    const ParameterBag = require('parameterBag');
     this.context = new ParameterBag();
     this.context.set('data', data);
     this.context.set('callback', callback);

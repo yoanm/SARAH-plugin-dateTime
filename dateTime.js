@@ -4,10 +4,13 @@
  * @requires dateTimeModule
  * @requires sarahLogger
  * @requires sarahActionContext
- * @requires sarahActionHelperFactory
+ * @requires sarahActionHelper
  * @requires sarahVersion
  */
 
+const SarahLogger = require('sarahLogger');
+const SarahActionContext = require('sarahActionContext');
+const SarahActionHelper = require('sarahActionHelper');
 /**
  * SARAH server plugin init function. Could be called at server startup or if plugin is reloaded
  *
@@ -16,7 +19,6 @@
 exports.init = function(SARAH)
 {
     this.version = require('sarahVersion');
-    const SarahLogger = require('sarahLogger');
     this.logger = new SarahLogger('DateTime');
     this.logger.info('initialization ...');
     var yearOnDate = true;
@@ -41,9 +43,7 @@ exports.dispose = function(){
  * {@inheretedDoc}
  */
 exports.action = function (data, callback, config, SARAH) {
-    const SarahActionContext = require('sarahActionContext');
     var context = new SarahActionContext(data, callback);
-    const SarahActionHelper = require('sarahActionHelper');
     var helper = new SarahActionHelper(context);
     if (this.version.isV3()) {
         // For SARAH v3
