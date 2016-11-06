@@ -1,16 +1,28 @@
-/**
+/*************************************************************
  * @summary dateTime module
  *
  * @requires sarahLogger
  * @requires parameterBag
  * @requires moment
- */
-module.exports = function(yearOnDate) {
-    return new DateTimeModule(yearOnDate);
-};
+ *
+ * @example <caption>Instantiation</caption>
+ * const DateTimeModule = require('dateTimeModule');
+ * var module = new DateTimeModule(data, callback);
+ *
+ * @example <caption>Setter</caption>
+ *  module.setYearOnDate(yearOnDate);
+ *
+ * @example <caption>Getter</caption
+ *  module.getYearOnDate();
+ *  module.getTimeMessage();
+ *  module.getDateTimeMessage();
+ *  module.getShortTimeMessage();
+ *  module.getShortDateMessage();
+ *************************************************************/
 
 const SarahLogger = require('sarahLogger');
 const ParameterBag = require('parameterBag');
+const moment = require('moment');
 
 /**
  * @constructor
@@ -18,8 +30,7 @@ const ParameterBag = require('parameterBag');
  * @param {bool} yearOnDate Whether or not year must be appended
  */
 function DateTimeModule(yearOnDate) {
-    this.moment = require('moment');
-    this.moment.locale('fr');
+    moment.locale('fr');
     this.logger = new SarahLogger('DateTimeModule');
     this.config = new ParameterBag();
     this.setYearOnDate(yearOnDate);
@@ -65,7 +76,7 @@ DateTimeModule.prototype.getYearOnDate = function () {
  * @param {string}            action
  * @param {SarahActionHelper} helper
  */
-DateTimeModule.prototype.speakFromAction = function (action, helper) {
+DateTimeModule.prototype.fromAction = function (action, helper) {
     var message = 'Hum j\'ai raté quelque chose !';
     switch (action) {
         case this.ACTION_DATE:
@@ -134,8 +145,8 @@ DateTimeModule.prototype.getDateTimeMessage = function () {
  */
 DateTimeModule.prototype.getShortTimeMessage = function () {
     return this.naturalLanguage(
-        this.moment().format('HH'),
-        this.moment().format('mm')
+        moment().format('HH'),
+        moment().format('mm')
     );
 };
 
@@ -146,7 +157,7 @@ DateTimeModule.prototype.getShortTimeMessage = function () {
  * @returns {string} Date sentence
  */
 DateTimeModule.prototype.getShortDateMessage = function () {
-    return this.moment()
+    return moment()
         .format(
             false == this.getYearOnDate()
                 ? 'dddd, DD MMMM'
@@ -203,3 +214,6 @@ DateTimeModule.prototype.logger = null;
  * @type {Moment}
  */
 DateTimeModule.prototype.moment = null;
+
+/* Export class */
+module.exports = DateTimeModule;
