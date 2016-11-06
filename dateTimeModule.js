@@ -1,18 +1,14 @@
 /**
  * @summary dateTime module
  *
- * @requires sarahLoggerFactory
+ * @requires sarahLogger
  * @requires parameterBag
  * @requires moment
  */
 module.exports = function(yearOnDate) {
     return new DateTimeModule(yearOnDate);
 };
-
-const ACTION_DATE = 'DATE';
-const ACTION_HOUR = 'HOUR';
-const ACTION_FULL = 'FULL';
-
+const SarahLogger = require('sarahLogger');
 /**
  * @constructor
  *
@@ -21,11 +17,29 @@ const ACTION_FULL = 'FULL';
 function DateTimeModule(yearOnDate) {
     this.moment = require('moment');
     this.moment.locale('fr');
-    this.logger = require('./sarahLoggerFactory')('DateTimeModule');
+    this.logger = new SarahLogger('DateTimeModule');
     const ParameterBag = require('parameterBag');
     this.config = new ParameterBag();
     this.setYearOnDate(yearOnDate);
 }
+/**
+ * @public
+ * @readOnly
+ * @type {string}
+ */
+DateTimeModule.prototype.ACTION_DATE = 'DATE';
+/**
+ * @public
+ * @readOnly
+ * @type {string}
+ */
+DateTimeModule.prototype.ACTION_HOUR = 'HOUR';
+/**
+ * @public
+ * @readOnly
+ * @type {string}
+ */
+DateTimeModule.prototype.ACTION_FULL = 'FULL';
 
 /**
  * @public
@@ -52,13 +66,13 @@ DateTimeModule.prototype.getYearOnDate = function () {
 DateTimeModule.prototype.speakFromAction = function (action, helper) {
     var message = 'Hum j\'ai raté quelque chose !';
     switch (action) {
-        case ACTION_DATE:
+        case this.ACTION_DATE:
             message = this.getDateMessage();
             break;
-        case ACTION_HOUR:
+        case this.ACTION_HOUR:
             message = this.getTimeMessage();
             break;
-        case ACTION_FULL:
+        case this.ACTION_FULL:
             message = this.getDateTimeMessage();
             break;
     }

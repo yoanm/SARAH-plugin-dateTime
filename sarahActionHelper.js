@@ -1,28 +1,21 @@
 /******************************************************************
- * @summary Factory to create a SARAH action helper
- * @description SarahActionHelper provide useless method regarding action
+ * @summary SARAH action helper
+ * @description SarahActionHelper provide useful method regarding action
  * for module which want to run in SARAH v3 AND v4
  *
- * @requires parameterBagFactory
+ * @requires parameterBag
  * @requires sarahVersion
  *
- * @example <caption>Multiple context instantiation</caption>
- * var sarahHelperFactory = require('sarahHelperFactory');
- * var sarahHelper1 = sarahHelperFactory(actionContext);
- * var sarahHelper2 = sarahHelperFactory(actionContext);
- *
- * @example <caption>Single context instantiation</caption>
- * var sarahHelper = require('sarahHelperFactory')(actionContext);
+ * @example <caption>Instantiation</caption>
+ * const SarahHelper = require('sarahHelper');
+ * var helper = new SarahHelper(<SarahActionContext> actionContext);
  *
  * @example <caption>Helper</caption>
- *  sarahHelper.speak(tts);
+ *  helper.speak(tts);
  *
  * @example <caption>Getter</caption
- *  sarahHelper.getContext();
+ *  helper.getContext();
  *******************************************************************/
-module.exports = function (actionContext) {
-    return new SarahActionHelper(actionContext);
-};
 
 /**
  * @constructor
@@ -30,8 +23,9 @@ module.exports = function (actionContext) {
  * @param {SarahActionContext} actionContext
  */
 function SarahActionHelper(actionContext) {
-    this.config = require('./parameterBagFactory')();
-    this.version = require('./sarahVersion');
+    const ParameterBag = require('parameterBag');
+    this.config = new ParameterBag();
+    this.version = require('sarahVersion');
     this.actionContext = actionContext;
 }
 
@@ -76,3 +70,6 @@ SarahActionHelper.prototype.actionContext = null;
  * @type {SarahVersion}
  */
 SarahActionHelper.prototype.version = null;
+
+/* Export class */
+module.exports = SarahActionHelper;
