@@ -46,7 +46,7 @@ module.exports = (function() {
      */
     SarahVersion.isV3 = function ()
     {
-        return typeof Config === "undefined";
+        return typeof Config === 'undefined';
     };
 
     /**
