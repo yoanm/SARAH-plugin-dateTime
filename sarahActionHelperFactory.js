@@ -3,8 +3,8 @@
  * @description SarahActionHelper provide useless method regarding action
  * for module which want to run in SARAH v3 AND v4
  *
- * @requires ParameterBag
- * @requires SarahVersion
+ * @requires parameterBagFactory
+ * @requires sarahVersion
  *
  * @example <caption>Multiple context instantiation</caption>
  * var sarahHelperFactory = require('sarahHelperFactory');

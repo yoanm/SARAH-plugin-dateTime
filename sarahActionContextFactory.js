@@ -3,7 +3,7 @@
  * @description SarahActionContext provide useless method regarding action context
  * for module which want to run in SARAH v3 AND v4
  *
- * @requires ParameterBag
+ * @requires parameterBagFactory
  *
  * @example <caption>Multiple context instantiation</caption>
  * var sarahContextFactory = require('sarahContextFactory');
