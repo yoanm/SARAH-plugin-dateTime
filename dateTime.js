@@ -2,7 +2,7 @@
  * @summary Sarah endpoint for dateTime plugin
  *
  * @requires dateTimeModule
- * @requires sarahLoggerFactory
+ * @requires sarahLogger
  * @requires sarahActionContextFactory
  * @requires sarahActionHelperFactory
  * @requires sarahVersion
@@ -15,8 +15,9 @@
  */
 exports.init = function(SARAH)
 {
-    this.version = require('./sarahVersion');
-    this.logger = require('./sarahLoggerFactory')('DateTime');
+    this.version = require('sarahVersion');
+    const SarahLogger = require('sarahLogger');
+    this.logger = new SarahLogger('DateTime');
     this.logger.info('initialization ...');
     var yearOnDate = true;
     if (this.version.isV4()) {
