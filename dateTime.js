@@ -1,26 +1,37 @@
 /**
+ * @summary Sarah endpoint for dateTime plugin
+ *
+ * @requires dateTimeModule
+ * @requires sarahLoggerFactory
+ * @requires sarahActionContextFactory
+ * @requires sarahActionHelperFactory
+ * @requires sarahVersion
+ */
+
+/**
  * SARAH server plugin init function. Could be called at server startup or if plugin is reloaded
  *
  * @param {SARAH} SARAH
  */
 exports.init = function(SARAH)
 {
+    this.version = require('./sarahVersion');
     this.logger = require('./sarahLoggerFactory')('DateTime');
     this.logger.info('initialization ...');
     var yearOnDate = true;
-    if (Config) {
+    if (this.version.isV4()) {
         // For SARAH v4
         yearOnDate = true == Config.modules.dateTime.yearOnDate;
     }
-    this.dateTimePlugin = require('./dateTimeModule')(yearOnDate);
-    this.logger.info(this.dateTimePlugin.getDateTimeMessage());
+    this.dateTimeModule = require('./dateTimeModule')(yearOnDate);
+    this.logger.info(this.dateTimeModule.getDateTimeMessage());
     this.logger.info('initialized !');
 };
 /**
- * SARAH server plugin dispose function. Called plugin reload
+ * SARAH server plugin dispose function. Called before plugin will be reloaded
  */
 exports.dispose = function(){
-    this.dateTimePlugin = null;
+    this.dateTimeModule = null;
     this.logger.info('uninitialized !');
     this.logger = null;
 };
@@ -31,12 +42,12 @@ exports.dispose = function(){
 exports.action = function (data, callback, config, SARAH) {
     var context = require('./sarahActionContextFactory')(data, callback);
     var helper = require('./sarahActionHelperFactory')(context);
-    if (!Config) {
+    if (this.version.isV3()) {
         // For SARAH v3
         context.setSARAH(SARAH);
-        this.dateTimePlugin.setYearOnDate(
+        this.dateTimeModule.setYearOnDate(
             true == config.modules.dateTime.yearOnDate
         );
     }
-    this.dateTimePlugin.speakFromAction(data.action, helper);
+    this.dateTimeModule.speakFromAction(data.action, helper);
 };

@@ -1,3 +1,10 @@
+/**
+ * @summary dateTime module
+ *
+ * @requires sarahLoggerFactory
+ * @requires parameterBagFactory
+ * @requires moment
+ */
 module.exports = function(yearOnDate) {
     return new DateTimeModule(yearOnDate);
 };
@@ -134,7 +141,7 @@ DateTimeModule.prototype.getShortDateMessage = function () {
  * @private
  * Will convert hour and minute on natural language
  *
- * @param {int} hour 24h format
+ * @param {int} hour   24h format
  * @param {int} minute
  *
  * @returns {string} The time on natural language
