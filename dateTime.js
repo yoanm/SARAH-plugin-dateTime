@@ -3,7 +3,7 @@
  *
  * @requires dateTimeModule
  * @requires sarahLogger
- * @requires sarahActionContextFactory
+ * @requires sarahActionContext
  * @requires sarahActionHelperFactory
  * @requires sarahVersion
  */
@@ -41,7 +41,8 @@ exports.dispose = function(){
  * {@inheretedDoc}
  */
 exports.action = function (data, callback, config, SARAH) {
-    var context = require('./sarahActionContextFactory')(data, callback);
+    const SarahActionContext = require('sarahActionContext');
+    var context = new SarahActionContext(data, callback);
     var helper = require('./sarahActionHelperFactory')(context);
     if (this.version.isV3()) {
         // For SARAH v3
