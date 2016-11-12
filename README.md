@@ -23,10 +23,10 @@ Allow interaction regarding date and time
 # install dependencies
 > npm install --production
 ```
- * (Optional) Replace all Alfred occurences in [dateTime.xml](./dateTime.xml) file with the name that you use (Sarah, jarvis, yuri, ...)
+ * (Optional) Replace all `Alfred` occurences in [dateTime.xml](./dateTime.xml) file with the name that you use (Sarah, jarvis, yuri, ...)
  * Edit [dateTime.prop](./dateTime.prop) file and set the right value for `yearOnDate` option.
-    * true : year will be appended in date response. Example : `Nous somme le 11 janvier 2001`
-    * false : date response will not contain year. Example : `Nous somme le 23 juin`
+    * `true` : year will be appended in date response. Example : `Nous somme le 11 janvier 2001`
+    * `false` : date response will not contain year. Example : `Nous somme le 23 juin`
 
    This option can also be updated directly on Sarah web interface (see "Plugin's configuration" or "Configuration")
  * Simply reload SARAH server, plugin will be automatically loaded.
