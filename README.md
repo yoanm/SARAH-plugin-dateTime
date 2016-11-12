@@ -1,79 +1,66 @@
 # [S.A.R.A.H.](http://encausse.net/s-a-r-a-h) - DateTime plugin
 
-This plugin is an add-on for the framework [S.A.R.A.H.](http://encausse.net/s-a-r-a-h), an Home Automation project built 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/yoanm/SARAH-plugin-datetime/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/yoanm/SARAH-plugin-datetime/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/yoanm/SARAH-plugin-datetime/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/yoanm/SARAH-plugin-datetime/?branch=master) [![Build Status](https://scrutinizer-ci.com/g/yoanm/SARAH-plugin-datetime/badges/build.png?b=master)](https://scrutinizer-ci.com/g/yoanm/SARAH-plugin-datetime/build-status/master)
+
+This plugin is an add-on for the framework [S.A.R.A.H.](http://encausse.net/s-a-r-a-h), an Home Automation project built     
 on top of:
-* C# (Kinect) client for Voice, Gesture, Face, QRCode recognition. 
-* NodeJS (ExpressJS) server for Internet of Things communication
+ * C# (Kinect) client for Voice, Gesture, Face, QRCode recognition. 
+ * NodeJS (ExpressJS) server for Internet of Things communication
 
-## License
+Allow interaction regarding date and time
 
-```
-            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
-                    Version 2, December 2004
-
- Copyright (C) 2012 S.A.R.A.H. <sarah.project@encausse.net>
-
- Everyone is permitted to copy and distribute verbatim or modified
- copies of this license document, and changing it is allowed as long
- as the name is changed.
-
-            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
-   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
-
-  0. You just DO WHAT THE FUCK YOU WANT TO.
-```
-
-```
- This program is free software. It comes without any warranty, to
- the extent permitted by applicable law. You can redistribute it
- and/or modify it under the terms of the Do What The Fuck You Want
- To Public License, Version 2, as published by S.A.R.A.H. See
- http://www.wtfpl.net/ for more details.
-```
-
-
-## Description
-
-A plugin to manage date and time
-
-
-## Quick Start
+## [S.A.R.A.H.](http://encausse.net/s-a-r-a-h) integration
 ### Download
-Clone or download the plugin from github into SARAH plugin directory :
 ```bash
-#Go to SARAH plugin directory
-> cd plugins
+> cd SARAH_PLUGIN_DIR
 #Clone the repository with proper name
 > git clone https://github.com/yoanm/SARAH-plugin-dateTime.git dateTime
-Cloning into 'dateTime'...
-Checking connectivity... done.
-#Go to dateTime plugin directory
-> cd dateTime
 ```
 
 ### Install
- 1. (Optional) Replace all `Alfred` occurences in [`dateTime.xml`](./dateTime.xml) file with the name that you use (Sarah, jarvis, yuri, ...)
- 2. Simply reload SARAH server, plugin will be automatically loaded.
-
-### How to use
-
-#### Time
-Say one the following sentences (replace `Alfred` with the one used) to have time : 
+```bash
+> cd dateTime
+# install dependencies
+> npm install --production
 ```
-Alfred, quelle heure est il ?
-Alfred, il est quelle heure ?
+ * (Optional) Replace all Alfred occurences in [dateTime.xml](./dateTime.xml) file with the name that you use (Sarah, jarvis, yuri, ...)
+ * Edit [dateTime.prop](./dateTime.prop) file and set the right value for `yearOnDate` option.
+    * true : year will be appended in date response. Example : `Nous somme le 11 janvier 2001`
+    * false : date response will not contain year. Example : `Nous somme le 23 juin`
+
+   This option can also be updated directly on Sarah web interface (see "Plugin's configuration" or "Configuration")
+ * Simply reload SARAH server, plugin will be automatically loaded.
+
+### Usage
+Sarah will respond to the following sentences (replace `Alfred` with the one used) :
+ * Hour (tts examples : `Il est midi 53`, `Il est 8 heure 12`)
+    * `Alfred, quelle heure est il [s'il te plait ]?`
+    * `Alfred, il est quelle heure [s'il te plait ]?`
+ * Date (tts examples : `Nous somme le 11 janvier 2001`, `Nous somme le 23 juin`)
+    * `Alfred, quel jour somme-nous [s'il te plait ]?`
+    * `Alfred, quelle date somme-nous [s'il te plait ]?`
+    * `Alfred, On est quel jour [s'il te plait ]?`
+    * `Alfred, On est quelle date [s'il te plait ]?`
+
+## Tests
+```bash
+> npm install
+> npm test
 ```
 
-#### Date
-Say one the following sentences (replace `Alfred` with the one used) to have date : 
+## Coverage
+```bash
+> npm install
+> npm run coverage
 ```
-Alfred, quel jour sommes-nous ?
-Alfred, on est quel jour ?
-Alfred, quelle date sommes-nous ?
-Alfred, on est quelle date ?
+Then open the `coverage/index.js.html` file in a browser
+
+## EsLint
+```bash
+> npm install
+> npm run eslint
 ```
 
-## Todo
- - Use word instead of numbers for instance for 12h00
- - Internationalization
- - Event emitter ?
+## Release History
+
+* `1.0.0` : Initial release
