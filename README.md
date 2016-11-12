@@ -1,13 +1,15 @@
-S.A.R.A.H. plugin datatime
-==========================
+# [S.A.R.A.H.](http://encausse.net/s-a-r-a-h) - DateTime plugin
 
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/yoanm/SARAH-plugin-datetime/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/yoanm/SARAH-plugin-datetime/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/yoanm/SARAH-plugin-datetime/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/yoanm/SARAH-plugin-datetime/?branch=master) [![Build Status](https://scrutinizer-ci.com/g/yoanm/SARAH-plugin-datetime/badges/build.png?b=master)](https://scrutinizer-ci.com/g/yoanm/SARAH-plugin-datetime/build-status/master)
 
-DateTime plugin for [S.A.R.A.H.](http://encausse.net/s-a-r-a-h)
+This plugin is an add-on for the framework [S.A.R.A.H.](http://encausse.net/s-a-r-a-h), an Home Automation project built     
+on top of:
+ * C# (Kinect) client for Voice, Gesture, Face, QRCode recognition. 
+ * NodeJS (ExpressJS) server for Internet of Things communication
 
 Allow interaction regarding date and time
 
-## S.A.R.A.H. integration
+## [S.A.R.A.H.](http://encausse.net/s-a-r-a-h) integration
 ### Download
 ```bash
 > cd SARAH_PLUGIN_DIR
