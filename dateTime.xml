@@ -29,7 +29,7 @@
 					est il
 				</item>
 				<item>
-					Il est
+					il est
 					<ruleref uri="#_timeSentence"/>
 				</item>
 			</one-of>
@@ -46,21 +46,13 @@
 			<one-of>
 				<item>
 					<one-of>
-						<item>Quel</item>
-						<item>Quelle</item>
-					</one-of>
-					<one-of>
 						<item><ruleref uri="#_dateSentence"/></item>
 						<item><ruleref uri="#_daySentence"/></item>
 					</one-of>
 					<item>somme-nous</item>
 				</item>
 				<item>
-					<item>On est</item>
-					<one-of>
-						<item>Quel</item>
-						<item>Quelle</item>
-					</one-of>
+					<item>on est</item>
 					<one-of>
 						<item><ruleref uri="#_dateSentence"/></item>
 						<item><ruleref uri="#_daySentence"/></item>
@@ -80,9 +72,9 @@
 		<item>quelle heure</item>
 	</rule>
 	<rule id="_dateSentence" scope="public">
-		<item>date</item>
+		<item>quelle date</item>
 	</rule>
 	<rule id="_daySentence" scope="public">
-		<item>jour</item>
+		<item>quel jour</item>
 	</rule>
 </grammar>
