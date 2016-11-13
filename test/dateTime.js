@@ -1,4 +1,4 @@
-/* globals describe, it, beforeEach, global */
+/* globals describe, it, beforeEach, global, afterEach */
 const expect = require('chai').expect;
 const sinon = require('sinon');
 const SarahActionContext = require('sarah-lib-utils/actionContext');
@@ -55,23 +55,24 @@ describe('sarah-plugin-datetime', function() {
         expect(SarahLoggerClassMock.calledWithNew()).to.equal(true);
         expect(logger.info.calledWithExactly('initialization ...')).to.equal(true);
         expect(DateTimePluginClassMock.calledWithNew()).to.equal(true);
-        expect(DateTimePluginClassMock.calledWithExactly(true)).to.equal(true);
+        expect(DateTimePluginClassMock.calledWithExactly(false, false)).to.equal(true);
         expect(logger.info.calledWithExactly('initialized !')).to.equal(true);
     });
     it('has init function - v4', function() {
         global.Config = {
             modules: {
                 dateTime: {
-                    yearOnDate: false
+                    yearOnDate: true,
+                    twelveHourFormat: true
                 }
             }
         };
-        version.isV3.returns(false);
+        version.isV4.returns(true);
         dateTime.init();
         expect(SarahLoggerClassMock.calledWithNew()).to.equal(true);
         expect(logger.info.calledWithExactly('initialization ...')).to.equal(true);
         expect(DateTimePluginClassMock.calledWithNew()).to.equal(true);
-        expect(DateTimePluginClassMock.calledWithExactly(false)).to.equal(true);
+        expect(DateTimePluginClassMock.calledWithExactly(true, true)).to.equal(true);
         expect(logger.info.calledWithExactly('initialized !')).to.equal(true);
     });
 
@@ -123,5 +124,9 @@ describe('sarah-plugin-datetime', function() {
         dateTime.action(data, callback, config, sarah);
 
         expect(dateTimePlugin.fromAction.calledWithExactly(data.action, sarahActionHelper)).to.equal(true);
+    });
+
+    afterEach(function() {
+        delete global.Config;
     });
 });

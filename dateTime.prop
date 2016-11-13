@@ -5,7 +5,8 @@
         {
             "description" : "Manage date and time",
             "version" : "1.0",
-            "yearOnDate": true
+            "yearOnDate": true,
+            "twelveHourFormat": false
         }
     }
 }

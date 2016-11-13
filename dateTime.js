@@ -23,10 +23,17 @@ exports.init = function(SARAH) {// eslint-disable-line no-unused-vars
     this.logger = new SarahLogger('DateTime');
     this.logger.info('initialization ...');
 
+    var pluginConfig = {
+        yearOnDate: false,
+        twelveHourFormat: false
+    };
+
+    if (version.isV4()) {
+        appendConfiguration(Config, pluginConfig);
+    }
     this.plugin = new DateTimePlugin(
-        version.isV3()
-            ? true
-            : getYearOnDateConfig(Config)
+        pluginConfig.yearOnDate,
+        pluginConfig.twelveHourFormat
     );
     this.logger.info(this.plugin.getDateTimeMessage());
 
@@ -52,18 +59,23 @@ exports.action = function(data, callback, config, SARAH) {
     var helper = new SarahActionHelper(context);
     if (version.isV3()) {
         context.setSARAH(SARAH);
-        this.plugin.setYearOnDate(
-            getYearOnDateConfig(config)
-        );
+        var pluginConfig = {
+            yearOnDate: false,
+            twelveHourFormat: false
+        };
+        appendConfiguration(config, pluginConfig);
+        this.plugin.setYearOnDate(pluginConfig.yearOnDate);
+        this.plugin.setTwelveHourFormat(pluginConfig.twelveHourFormat);
     }
     this.plugin.fromAction(data.action, helper);
 };
 
 /**
- * @param {object} config
  *
- * @returns {boolean}
+ * @param {object} SarahConfig
+ * @param {object} pluginConfig
  */
-function getYearOnDateConfig(config) {
-    return config.modules.dateTime.yearOnDate === true;
+function appendConfiguration(SarahConfig, pluginConfig) {
+    pluginConfig.yearOnDate = SarahConfig.modules.dateTime.yearOnDate === true;
+    pluginConfig.twelveHourFormat = SarahConfig.modules.dateTime.twelveHourFormat === true;
 }
