@@ -82,20 +82,32 @@ describe('sarah-plugin-datetime/dateTimePlugin - time', function() {
     it('speak natural language', function() {
         var separator = ' heure ';
         var list = {
-            '> 12h ==> -12': {
+            '> 12h ==> -12 if twelveHourFormat = true': {
                 hour: 14,
-                minute: 0,
-                expected: '2' + separator + '0'
+                minute: 24,
+                expected: '2' + separator + '24',
+                twelveHourFormat: true
             },
-            '12h ==> midi': {
+            '> 12h ==> not -12 if twelveHourFormat = false': {
+                hour: 14,
+                minute: 45,
+                expected: '14' + separator + '45',
+                twelveHourFormat: false
+            },
+            '12h34 ==> midi 34': {
                 hour: 12,
                 minute: 34,
                 expected: 'midi 34'
             },
-            '24h ==> minuit': {
+            '24h41 ==> minuit 41': {
                 hour: 24,
-                minute: 34,
-                expected: 'minuit 34'
+                minute: 41,
+                expected: 'minuit 41'
+            },
+            '12h00 ==> midi': {
+                hour: 12,
+                minute: 0,
+                expected: 'midi'
             }
         };
 
@@ -103,6 +115,11 @@ describe('sarah-plugin-datetime/dateTimePlugin - time', function() {
         for (var caseTitle in list) {
             if ({}.hasOwnProperty.call(list, caseTitle)) {
                 data = list[caseTitle];
+                module.setTwelveHourFormat(
+                    typeof data.twelveHourFormat === 'boolean'
+                        ? data.twelveHourFormat
+                        : false
+                );
                 expect(module.naturalLanguage(data.hour, data.minute)).to.equal(data.expected, caseTitle);
             }
         }
@@ -274,9 +291,9 @@ function getExpectedGetShortDateMessage(dateNow) {
  * @returns {string}
  */
 function getExpectedGetTimeMessage(hour, minute) {
-    return ' Il est '
+    return 'Il est '
         + getExpectedGetShortTimeMessage(hour, minute)
-        + '. ';
+        + '.';
 }
 /**
  * @param {string} dateNow
@@ -286,7 +303,7 @@ function getExpectedGetTimeMessage(hour, minute) {
 function getExpectedGetDateMessage(dateNow) {
     return 'Nous sommes le '
         + getExpectedGetShortDateMessage(dateNow)
-        + '. ';
+        + '.';
 }
 /**
  * @param {int} hour
@@ -300,7 +317,7 @@ function getExpectedGetDateTimeMessage(hour, minute, date) {
     expectedMessage += getExpectedGetShortDateMessage(date);
     expectedMessage += ' à ';
     expectedMessage += getExpectedGetShortTimeMessage(hour, minute);
-    expectedMessage += '. ';
+    expectedMessage += '.';
     return expectedMessage;
 }
 function verifyGetShortTimeMessage() { // eslint-disable-line require-jsdoc
