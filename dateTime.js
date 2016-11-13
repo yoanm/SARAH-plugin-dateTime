@@ -23,10 +23,17 @@ exports.init = function(SARAH) {// eslint-disable-line no-unused-vars
     this.logger = new SarahLogger('DateTime');
     this.logger.info('initialization ...');
 
+    var pluginConfig = {
+        yearOnDate: false,
+        twelveHourFormat: false
+    };
+
+    if (version.isV3() === false) {
+        appendConfiguration(Config, pluginConfig);
+    }
     this.plugin = new DateTimePlugin(
-        version.isV3()
-            ? true
-            : getYearOnDateConfig(Config)
+        pluginConfig.yearOnDate,
+        pluginConfig.twelveHourFormat
     );
     this.logger.info(this.plugin.getDateTimeMessage());
 
@@ -66,4 +73,13 @@ exports.action = function(data, callback, config, SARAH) {
  */
 function getYearOnDateConfig(config) {
     return config.modules.dateTime.yearOnDate === true;
+}
+/**
+ *
+ * @param {object} SarahConfig
+ * @param {object} pluginConfig
+ */
+function appendConfiguration(SarahConfig, pluginConfig) {
+    pluginConfig.yearOnDate = SarahConfig.modules.dateTime.yearOnDate === true;
+    pluginConfig.twelveHourFormat = SarahConfig.modules.dateTime.twelveHourFormat === true;
 }
