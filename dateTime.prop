@@ -4,7 +4,7 @@
         "dateTime" :
         {
             "description" : "Manage date and time",
-            "version" : "1.0",
+            "version" : "1.2.0",
             "yearOnDate": true,
             "twelveHourFormat": false
         }
