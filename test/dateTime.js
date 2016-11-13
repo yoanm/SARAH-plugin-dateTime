@@ -67,7 +67,7 @@ describe('sarah-plugin-datetime', function() {
                 }
             }
         };
-        version.isV3.returns(false);
+        version.isV4.returns(true);
         dateTime.init();
         expect(SarahLoggerClassMock.calledWithNew()).to.equal(true);
         expect(logger.info.calledWithExactly('initialization ...')).to.equal(true);
